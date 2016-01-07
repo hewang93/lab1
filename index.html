@@ -4,6 +4,107 @@
 <head>
 	<meta charset="utf-8">
 	<title>HCI Project Portfolio</title>
+
+<style type=”text/css”>
+.menutitle{
+cursor:pointer;
+margin-bottom: 5px;
+background-color:#ECECFF;
+color:#000000;
+width:140px;
+padding:2px;
+text-align:center;
+font-weight:bold;
+/*/*/border:1px solid #000000;/* */
+}
+.submenu{
+margin-bottom: 0.5em;
+}
+</style>
+
+<script type=”text/javascript”>
+
+/***********************************************
+* Switch Menu script- by Martial B of http://getElementById.com/
+* Modified by Dynamic Drive for format & NS4/IE4 compatibility
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+var persistmenu=”yes” //”yes” or “no”. Make sure each SPAN content contains an incrementing ID starting at 1 (id=”sub1″, id=”sub2″, etc)
+var persisttype=”sitewide” //enter “sitewide” for menu to persist across site, “local” for this page only
+
+if (document.getElementById){ //DynamicDrive.com change
+document.write(‘<style type=”text/css”>n’)
+document.write(‘.submenu{display: none;}n’)
+document.write(‘</style>n’)
+}
+
+function SwitchMenu(obj){
+if(document.getElementById){
+var el = document.getElementById(obj);
+var ar = document.getElementById(“masterdiv”).getElementsByTagName(“span”); //DynamicDrive.com change
+if(el.style.display != “block”){ //DynamicDrive.com change
+for (var i=0; i<ar.length; i++){
+if (ar[i].className==”submenu”) //DynamicDrive.com change
+ar[i].style.display = “none”;
+}
+el.style.display = “block”;
+}else{
+el.style.display = “none”;
+}
+}
+}
+
+function get_cookie(Name) {
+var search = Name + “=”
+var returnvalue = “”;
+if (document.cookie.length > 0) {
+offset = document.cookie.indexOf(search)
+if (offset != -1) {
+offset += search.length
+end = document.cookie.indexOf(“;”, offset);
+if (end == -1) end = document.cookie.length;
+returnvalue=unescape(document.cookie.substring(offset, end))
+}
+}
+return returnvalue;
+}
+
+function onloadfunction(){
+if (persistmenu==”yes”){
+var cookiename=(persisttype==”sitewide”)? “switchmenu” : window.location.pathname
+var cookievalue=get_cookie(cookiename)
+if (cookievalue!=””)
+document.getElementById(cookievalue).style.display=”block”
+}
+}
+
+function savemenustate(){
+var inc=1, blockid=””
+while (document.getElementById(“sub”+inc)){
+if (document.getElementById(“sub”+inc).style.display==”block”){
+blockid=”sub”+inc
+break
+}
+inc++
+}
+var cookiename=(persisttype==”sitewide”)? “switchmenu” : window.location.pathname
+var cookievalue=(persisttype==”sitewide”)? blockid+”;path=/” : blockid
+document.cookie=cookiename+”=”+cookievalue
+}
+
+if (window.addEventListener)
+window.addEventListener(“load”, onloadfunction, false)
+else if (window.attachEvent)
+window.attachEvent(“onload”, onloadfunction)
+else if (document.getElementById)
+window.onload=onloadfunction
+
+if (persistmenu==”yes” && document.getElementById)
+window.onunload=savemenustate
+
+</script>
+
 </head>
 
 <body>
@@ -18,6 +119,12 @@
 	<ul style="list-style-type:square">
 		<li>Virtue/Vice Habit Tracker Web App</li>
 			<p>Developed a habit tracker web application using HTML5 and JS on a 5-person team. Implemented user notifications and error tracking to ensure user efficiency. Additionally, coordinate the project using agile method to ensure deadlines and requiremenets were met.</p>
+			<img id="Login" class="icon" src="img/webapplogin.png" title="Login Page" width="400px" height="450px" />
+			<img id="Edit" class="icon" src="img/webappedit.png" title="Edit Page" width="400px" height="450px" />
+			<img id="List" class="icon" src="img/webapplist.png" title="List Page" width="400px" height="450px" />
+			<p>
+			<a href="mainFolder/src/login.html/">Check out the first iteration of the login page!</a></p>
+			<a href="mainFolder/src/welcome.html/">Check out the first iteration of the welcome page!</a></p>
 		<li>Verilog Projects</li>
 			<p>Build an 8-bit mini CPU, a Finite State Machine BCD and a Gray Code Counter</p>
 		<li>Anagrams</li>
@@ -31,5 +138,12 @@
 		<li>Toastmaster's International President</li>
 			<p>Strategically planned weekly meetings by preparing action plans, ensuring team productivity, and meeting goals. Also, oversaw the operation of each event.</p>
 	</ul>
+
+	<h4>Click on the image for a link to more Corgi pictures!</h4>
+	
+	<a href="https://www.flickr.com/photos/henwang/">
+		<img src="img/riley.jpg" border="0" width="450px" height="400px" />
+	</a>
+
 </body>
 </html>
